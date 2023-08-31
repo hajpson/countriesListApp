@@ -1,0 +1,42 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.textInput {
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 14px;
+  border: none;
+  font-family: inherit;
+  transition: .5s;
+  background-color: #8cf5777c;
+  color: white;
+  outline: none;
+  font-weight: 700;
+  box-shadow: 0 0 2px 1px #46ff217c;
+}
+
+.textInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.textInput:hover {
+  box-shadow: 0 0 4px 2px #46ff217c;
+}
+
+.textInput:focus {
+  box-shadow: 0 0 8px 4px #46ff217c;
+  transform: scale(1);
+}
+
+.listTilesContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 6px;
+}
+
+.listTile {
+  background-color: white;
+  padding: 12px;
+}
