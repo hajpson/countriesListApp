@@ -1,6 +1,6 @@
-import { University } from "../models/University"
+import { CountriesData } from "./countriesData"
 
 export type CountriesDataContextType = {
-    countriesData: University[] | null,
-    setCountriesData: React.Dispatch<React.SetStateAction<University[] | null>>
+    countriesData: CountriesData | null,
+    setCountriesData: React.Dispatch<React.SetStateAction<CountriesData | null>>
 }

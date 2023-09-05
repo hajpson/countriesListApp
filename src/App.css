@@ -3,6 +3,12 @@
   text-align: center;
 }
 
+.preventSelect {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -18,7 +24,7 @@
 }
 
 .header {
-  margin: 12px 0px;
+  margin: 0px 0px 12px 0px;
 }
 
 .textInput {
@@ -75,4 +81,29 @@
 .listTile:hover {
   border-color: rgba(255, 255, 255, 1);
   transform: translate(5px);
+}
+
+.paginationIndicatorContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.paginationIndicatorCounterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 6px;
+  padding: 0;
+  border-radius: 6px;
+  border: 2px solid white;
+}
+
+.paginationIndicatorCounterContainer p {
+  margin: 0px 8px;
+  padding: 0;
+}
+
+.indicatorIcon {
+  cursor: pointer;
 }
