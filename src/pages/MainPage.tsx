@@ -5,9 +5,9 @@ export const MainPage = () => {
         <div className="mainContainer">
             <div className="headerContainer">
                 <h1 className="header">Countries searcher</h1>
-
-                <PaginatedWindow />
             </div>
+
+            <PaginatedWindow />
         </div>
     )
 }

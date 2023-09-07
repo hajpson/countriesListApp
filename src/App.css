@@ -21,15 +21,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: start;
+  margin: 0px 6px;
 }
 
 .header {
   margin: 0px 0px 12px 0px;
 }
 
-.textInput {
+.textInput, .mainButton {
   padding: 12px;
-  margin: 0px 0px 12px 0px;
+  margin: 0px 0px 12px 6px;
   border-radius: 14px;
   border: none;
   font-family: inherit;
@@ -45,13 +46,17 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.textInput:hover {
+.textInput:hover, .mainButton:hover {
   box-shadow: 0 0 4px 2px #46ff217c;
 }
 
-.textInput:focus {
+.textInput:focus, .mainButton:active {
   box-shadow: 0 0 8px 4px #46ff217c;
   transform: scale(1);
+}
+
+.mainButton {
+  cursor: pointer;
 }
 
 .listTilesContainer {
@@ -83,7 +88,7 @@
   transform: translate(5px);
 }
 
-.paginationIndicatorContainer {
+.paginationIndicatorContainer, .detailsSubcontainer {
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -106,4 +111,12 @@
 
 .indicatorIcon {
   cursor: pointer;
+}
+
+.detailsContainer {
+  margin-left: 6px;
+}
+
+.detailsLabel {
+  margin-right: 12px;
 }

@@ -12,12 +12,14 @@ export const PaginatedWindow = () => {
     const { countriesData, setCountriesData } = useCountriesData()
     const [inputValue, setInputValue] = useState('')
     const isLoading = useRef(false)
+    const hasErrorAppeared = useRef(false)
     let timeout: ReturnType<typeof setTimeout>
 
     const handleCurrentPageData = (
         value: string
     ) => {
         isLoading.current = true
+        hasErrorAppeared.current = false
         clearTimeout(timeout)
         timeout = setTimeout(() => {
             axios
@@ -34,6 +36,10 @@ export const PaginatedWindow = () => {
                     setCountriesData(filteredData)
                     isLoading.current = false
                 })
+                .catch(error => {
+                    hasErrorAppeared.current = true
+                    console.log(error.response.data.error)
+                })
         }, 500)
     }
 
@@ -45,7 +51,8 @@ export const PaginatedWindow = () => {
         event.preventDefault()
         setInputValue(value)
 
-        if (value.length < 5) {
+        if (value.length < 5
+            || value.length > 8) {
             return;
         }
 
@@ -61,19 +68,23 @@ export const PaginatedWindow = () => {
                 textValue={inputValue} />
 
             {
-                isLoading.current
+                hasErrorAppeared.current
                     ?
-                    <div><p>Loading ...</p></div>
+                    <h4>{`Error appeared (check console to learn more)\nRefresh the page or try with different phrase to dismiss`}</h4>
                     :
-                    countriesData === null
-                        || countriesData === undefined
-                        || countriesData.universities.length === 0
+                    isLoading.current
                         ?
-                        <h2>No data found, try a different search.</h2>
+                        <div><p>Loading ...</p></div>
                         :
-                        <div className='listTilesContainer'>
-                            <CountryList />
-                        </div>
+                        countriesData === null
+                            || countriesData === undefined
+                            || countriesData.universities.length === 0
+                            ?
+                            <h2>No data found, try a different search.</h2>
+                            :
+                            <div className='listTilesContainer'>
+                                <CountryList />
+                            </div>
             }
         </>
     )

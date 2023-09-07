@@ -1,17 +1,17 @@
 export class University {
-    web_page: string;
+    web_pages: string[];
     country: string;
-    domain: string;
+    domains: string[];
     name: string;
 
     constructor(
-        web_page: string,
+        web_pages: string[],
         country: string,
-        domain: string,
+        domains: string[],
         name: string) {
-        this.web_page = web_page;
+        this.web_pages = web_pages;
         this.country = country;
-        this.domain = domain;
+        this.domains = domains;
         this.name = name;
     }
 }
