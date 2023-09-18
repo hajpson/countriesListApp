@@ -21,25 +21,22 @@ export const PaginatedWindow = () => {
         isLoading.current = true
         hasErrorAppeared.current = false
         clearTimeout(timeout)
-        timeout = setTimeout(() => {
-            axios
-                .get(`${baseUrl}`)
-                .then((response) => {
-                    const fuse = new Fuse<University>(response.data, { keys: ['country'] })
-                    const fuseSearch = fuse.search(value)
-                    const filteredData = {
-                        universities: fuseSearch.map(({ item }) => item),
-                        currentPage: 1,
-                        universitiesCount: fuseSearch.length
-                    }
-
-                    setCountriesData(filteredData)
-                    isLoading.current = false
-                })
-                .catch(error => {
-                    hasErrorAppeared.current = true
-                    console.log(error.response.data.error)
-                })
+        timeout = setTimeout(async () => {
+            try {
+                const response = await axios.get(`${baseUrl}`)
+                const fuse = new Fuse<University>(response.data, { keys: ['country'] })
+                const fuseSearch = fuse.search(value)
+                const filteredData = {
+                    universities: fuseSearch.map(({ item }) => item),
+                    currentPage: 1,
+                    universitiesCount: fuseSearch.length
+                }
+                setCountriesData(filteredData)
+                isLoading.current = false
+            } catch (error) {
+                hasErrorAppeared.current = true
+                console.log(error)
+            }
         }, 500)
     }
 
@@ -47,6 +44,10 @@ export const PaginatedWindow = () => {
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         const value = event.target.value
+
+        if (value.length === 0) {
+            setCountriesData(null)
+        }
 
         event.preventDefault()
         setInputValue(value)
@@ -58,8 +59,6 @@ export const PaginatedWindow = () => {
 
         handleCurrentPageData(value)
     }
-
-
 
     return (
         <>
